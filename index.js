@@ -79,11 +79,13 @@ const deleteUser = (req, res, next) => {
 }
 
 //create basic endpoints for user
-app.get("/api/v1/users/", getAllUsers)
-app.post("/api/v1/users/", createNewUser)
-app.get("/api/v1/users/:id", getSingleUser)
-app.patch("/api/v1/users/:id", updateUser)
-app.delete("/api/v1/users/:id", deleteUser)
+app.route("/api/v1/users/")
+    .get(getAllUsers)
+    .post(createNewUser)
+app.route("/api/v1/users/:id")
+    .get(getSingleUser)
+    .patch(updateUser)
+    .delete(deleteUser)
 
 
 app.listen(process.env.PORT, () => {
