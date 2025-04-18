@@ -18,10 +18,9 @@ app.use((req, res, next) => {
     next()
 })
 
-//create basic endpoints for user
-
-//get all users
-app.get("/api/v1/users/", (req, res, next) => {
+//users handlers
+//getAllUsers handler function
+const getAllUsers = (req, res, next) => {
 
     res
     .status(200)
@@ -29,10 +28,10 @@ app.get("/api/v1/users/", (req, res, next) => {
         status: 'success',
         message: 'Get all users'
     })
-})
+}
 
-// add new user
-app.post("/api/v1/users/", (req, res, next) => {
+//createNewUser handler function
+const createNewUser = (req, res, next) => {
     console.log(req.body)
 
     res
@@ -41,10 +40,10 @@ app.post("/api/v1/users/", (req, res, next) => {
         status: 'success',
         message: 'new user is created'
     })
-})
+}
 
-// get single user
-app.get("/api/v1/users/:id", (req, res, next) => {
+//getSingleUser handler function
+const getSingleUser = (req, res, next) => {
     console.log(`user id = ${req.params.id}`)
 
     res
@@ -53,10 +52,10 @@ app.get("/api/v1/users/:id", (req, res, next) => {
         status: 'success',
         message: 'single user data'
     })
-})
+}
 
-// update user
-app.patch("/api/v1/users/:id", (req, res, next) => {
+//updateUser handler function
+const updateUser = (req, res, next) => {
     console.log(`user id = ${req.params.id}`)
 
     res
@@ -65,10 +64,10 @@ app.patch("/api/v1/users/:id", (req, res, next) => {
         status: 'success',
         message: 'user updated successfully'
     })
-})
+}
 
-//delete user
-app.delete("/api/v1/users/:id", (req, res, next) => {
+//deleteUser handler function
+const deleteUser = (req, res, next) => {
     console.log(`user id = ${req.params.id}`)
 
     res
@@ -77,7 +76,14 @@ app.delete("/api/v1/users/:id", (req, res, next) => {
         status: 'success',
         message: "deleted user successfully"
     })
-})
+}
+
+//create basic endpoints for user
+app.get("/api/v1/users/", getAllUsers)
+app.post("/api/v1/users/", createNewUser)
+app.get("/api/v1/users/:id", getSingleUser)
+app.patch("/api/v1/users/:id", updateUser)
+app.delete("/api/v1/users/:id", deleteUser)
 
 
 app.listen(process.env.PORT, () => {
